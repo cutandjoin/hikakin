@@ -1,33 +1,34 @@
-//HIKAKIN & SEIKIN "FIRE" (https://www.amazon.co.jp/dp/B09CZ9JLTZ)のMP3ファイルをCJMP3 v1.4.9.5で加工･編集しサビのメドレーを作成します
+//HIKAKIN & SEIKIN "FIRE" (https://www.amazon.co.jp/dp/B09CZ9JLTZ)のMP3ファイルを
+//CJMP3 v1.5.0.0(https://cutandjoin.com/cj-mp3/1399/)で加工･編集し全曲のサビのメドレーを作成します
 
 //[使い方]
 //1.このテキスト全体をコピーしてCJMP3のテキストエディタ ([メニュー] > [ファイル] > [テキストエディタを開く]) にペースト→[実行]ボタン
 //2.ウインドウが開くのでHIKAKIN & SEIKIN "FIRE"をドロップ
 //3.[スタート]ボタン押下でデスクトップに「HIKAKIN」フォルダが作成され、編集したファイルが出力されます
 
-
 CJMP RESET
-CJMP vr=2
-CJM CUT,em=0,ev=2,cd=0
+CJM IMPORT
 #
 01.mp3
 00:00:000 0:
-00:01:802 1:"01c"
-00:17:580 0:
-01:02:197 1:"02c"
-01:32:682 0:
-02:17:064 1:"03c"
-02:47:862 0:
-03:03:666 1:"04c"
-03:19:497 0:
-03:21:038 1:"05c"
-03:36:581 0:
+00:02:302 1:"01"
+00:17:480 0:
+01:02:697 1:"02"
+01:32:582 0:
+02:17:564 1:"03"
+02:47:762 0:
+03:04:166 1:"04"
+03:19:397 0:
+03:21:538 1:"05"
+03:36:481 0:
 
-
-CJM VJOIN,em=1,ae=0,ib=30.0,is=0.5,oc=30.0,os=0.1,cd=1,mf="HIKAKIN",ex=1
-#"FIREメドレー"
-01c.mp3
-02c.mp3
-03c.mp3
-04c.mp3
-05c.mp3
+CJM SELECTALL,DECOMPRESS(0,1),SEQUENCE(4,1)
+CJM SETALLITEMS(2),VBR,MERGE
+CJM STRETCH(0.5,1)
+CJM STRETCH(0.1,2)
+CJM FADE(1,1500,0.5,30,0,0.1,0,30)
+CJM NAMEB("FIREメドレー"),COMPRESS
+CJM UNFIXFS
+CJM UNFIXCUE
+CJM UNSELECTALL
+CJM SETALLITEMS(2),VBR,NAMEST("HIKAKIN"),NAMEMF("HIKAKIN"),EXPORTMP3,EXECUTE
